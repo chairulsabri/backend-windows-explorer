@@ -1,0 +1,539 @@
+{
+  "info": {
+    "name": "Windows Explorer API",
+    "description": "Complete API collection for Windows Explorer file management system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12345678"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "api_base",
+      "value": "{{base_url}}/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health & Info",
+      "item": [
+        {
+          "name": "API Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Get API information and available endpoints"
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check API and database health status"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Folders",
+      "item": [
+        {
+          "name": "Get All Folders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders?page=1&limit=10",
+              "host": ["{{api_base}}"],
+              "path": ["folders"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "created_at",
+                  "disabled": true
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Retrieve all folders with pagination and optional search"
+          }
+        },
+        {
+          "name": "Get Folder by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders/1",
+              "host": ["{{api_base}}"],
+              "path": ["folders", "1"]
+            },
+            "description": "Get specific folder by ID"
+          }
+        },
+        {
+          "name": "Get Folder Contents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders/2/contents",
+              "host": ["{{api_base}}"],
+              "path": ["folders", "2", "contents"]
+            },
+            "description": "Get all folders and files inside a specific folder"
+          }
+        },
+        {
+          "name": "Get Folder Tree",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders/tree/all",
+              "host": ["{{api_base}}"],
+              "path": ["folders", "tree", "all"]
+            },
+            "description": "Get complete folder hierarchy as tree structure"
+          }
+        },
+        {
+          "name": "Create Folder",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Projects\",\n  \"path\": \"/Documents/Projects\",\n  \"parent_id\": 2\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/folders",
+              "host": ["{{api_base}}"],
+              "path": ["folders"]
+            },
+            "description": "Create a new folder"
+          }
+        },
+        {
+          "name": "Update Folder",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Projects\",\n  \"path\": \"/Documents/UpdatedProjects\"\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/folders/7",
+              "host": ["{{api_base}}"],
+              "path": ["folders", "7"]
+            },
+            "description": "Update folder information"
+          }
+        },
+        {
+          "name": "Delete Folder",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders/7",
+              "host": ["{{api_base}}"],
+              "path": ["folders", "7"]
+            },
+            "description": "Delete a folder and all its contents (CASCADE)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Files",
+      "item": [
+        {
+          "name": "Get All Files",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files?page=1&limit=10",
+              "host": ["{{api_base}}"],
+              "path": ["files"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "search",
+                  "value": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "created_at",
+                  "disabled": true
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Retrieve all files with pagination and search"
+          }
+        },
+        {
+          "name": "Get File by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files/1",
+              "host": ["{{api_base}}"],
+              "path": ["files", "1"]
+            },
+            "description": "Get specific file by ID"
+          }
+        },
+        {
+          "name": "Get Files by Folder",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files/folder/5",
+              "host": ["{{api_base}}"],
+              "path": ["files", "folder", "5"]
+            },
+            "description": "Get all files in a specific folder"
+          }
+        },
+        {
+          "name": "Get Files by Extension",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files/extension/pdf",
+              "host": ["{{api_base}}"],
+              "path": ["files", "extension", "pdf"]
+            },
+            "description": "Get all files with specific extension"
+          }
+        },
+        {
+          "name": "Get Storage Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files/stats/storage",
+              "host": ["{{api_base}}"],
+              "path": ["files", "stats", "storage"]
+            },
+            "description": "Get storage statistics including total size and breakdown by extension"
+          }
+        },
+        {
+          "name": "Create File",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"new-document.pdf\",\n  \"path\": \"/Documents/Work/new-document.pdf\",\n  \"folder_id\": 5,\n  \"extension\": \"pdf\",\n  \"size\": 2048576,\n  \"mime_type\": \"application/pdf\"\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/files",
+              "host": ["{{api_base}}"],
+              "path": ["files"]
+            },
+            "description": "Create a new file entry"
+          }
+        },
+        {
+          "name": "Update File",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"updated-document.pdf\",\n  \"size\": 3048576\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/files/1",
+              "host": ["{{api_base}}"],
+              "path": ["files", "1"]
+            },
+            "description": "Update file information"
+          }
+        },
+        {
+          "name": "Move File",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"folder_id\": 6\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/files/1/move",
+              "host": ["{{api_base}}"],
+              "path": ["files", "1", "move"]
+            },
+            "description": "Move file to another folder"
+          }
+        },
+        {
+          "name": "Delete File",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files/6",
+              "host": ["{{api_base}}"],
+              "path": ["files", "6"]
+            },
+            "description": "Delete a file"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Favorites",
+      "item": [
+        {
+          "name": "Get All Favorites",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/favorites",
+              "host": ["{{api_base}}"],
+              "path": ["favorites"]
+            },
+            "description": "Get all favorite items (files and folders)"
+          }
+        },
+        {
+          "name": "Add to Favorites (File)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"item_type\": \"file\",\n  \"item_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/favorites",
+              "host": ["{{api_base}}"],
+              "path": ["favorites"]
+            },
+            "description": "Add a file to favorites"
+          }
+        },
+        {
+          "name": "Add to Favorites (Folder)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"item_type\": \"folder\",\n  \"item_id\": 2\n}"
+            },
+            "url": {
+              "raw": "{{api_base}}/favorites",
+              "host": ["{{api_base}}"],
+              "path": ["favorites"]
+            },
+            "description": "Add a folder to favorites"
+          }
+        },
+        {
+          "name": "Check if Favorited",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/favorites/check/file/1",
+              "host": ["{{api_base}}"],
+              "path": ["favorites", "check", "file", "1"]
+            },
+            "description": "Check if an item is in favorites"
+          }
+        },
+        {
+          "name": "Remove from Favorites",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/favorites/1",
+              "host": ["{{api_base}}"],
+              "path": ["favorites", "1"]
+            },
+            "description": "Remove an item from favorites"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Advanced Queries",
+      "item": [
+        {
+          "name": "Search Folders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders?search=Documents&page=1&limit=10",
+              "host": ["{{api_base}}"],
+              "path": ["folders"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Documents"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Search folders by name or path"
+          }
+        },
+        {
+          "name": "Search Files",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files?search=report&sortBy=size&sortOrder=DESC",
+              "host": ["{{api_base}}"],
+              "path": ["files"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "report"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "size"
+                },
+                {
+                  "key": "sortOrder",
+                  "value": "DESC"
+                }
+              ]
+            },
+            "description": "Search files with sorting"
+          }
+        },
+        {
+          "name": "Get PDF Files",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/files/extension/pdf",
+              "host": ["{{api_base}}"],
+              "path": ["files", "extension", "pdf"]
+            },
+            "description": "Get all PDF files"
+          }
+        },
+        {
+          "name": "Get Root Folder Contents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{api_base}}/folders/1/contents",
+              "host": ["{{api_base}}"],
+              "path": ["folders", "1", "contents"]
+            },
+            "description": "Get contents of root folder"
+          }
+        }
+      ]
+    }
+  ]
+}

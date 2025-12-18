@@ -1,0 +1,29 @@
+{
+  "name": "windows-explorer-api",
+  "version": "1.0.0",
+  "description": "Windows Explorer API with Bun, Elysia, TypeScript, and MySQL",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "start": "bun run src/index.ts",
+    "db:migrate": "bun run src/database/migrate.ts"
+  },
+  "keywords": [
+    "bun",
+    "elysia",
+    "typescript",
+    "mysql",
+    "file-explorer"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "elysia": "^1.0.0",
+    "@elysiajs/cors": "^1.0.0",
+    "@elysiajs/swagger": "^1.0.0",
+    "mysql2": "^3.6.5"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  }
+}
