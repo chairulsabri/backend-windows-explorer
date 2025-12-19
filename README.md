@@ -403,11 +403,11 @@ PORT=3001
 
 ## 📄 License
 
-MIT
+MIT Chairul Sabri
 
 ## 👥 Author
 
-Your Name
+Chairul Sabri
 
 ## 🤝 Contributing
 
